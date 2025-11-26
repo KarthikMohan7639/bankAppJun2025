@@ -3,6 +3,7 @@ package edu.jsp.bankapplication.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,10 +30,11 @@ public class Account {
 
 	@ManyToOne
 	@JoinColumn
+	@JsonBackReference
 	private User user;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Transaction> transactions;
 
 	public void addTransaction(Transaction t) {

@@ -2,6 +2,8 @@ package edu.jsp.bankapplication.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,21 +17,22 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Transaction {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
+	private Long id;
 	private double amount;
 	private LocalDateTime date;
 	private String type; //CREDIT,DEBIT
-	
+
 	@ManyToOne
 	@JoinColumn
+	@JsonBackReference
 	private   Account account;
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

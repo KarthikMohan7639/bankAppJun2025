@@ -31,7 +31,7 @@ public class User {
 
 	@OneToMany
 	(cascade = CascadeType.ALL,mappedBy = "user",orphanRemoval = true)
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<Account> accounts;
 
 	public void addLoan(Loan l) {
