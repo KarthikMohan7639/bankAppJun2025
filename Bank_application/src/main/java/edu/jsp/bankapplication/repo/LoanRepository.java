@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import edu.jsp.bankapplication.model.Loan;
+import edu.jsp.bankapplication.model.LoanStatus;
 
-public interface LoanRepository  extends JpaRepository<Loan, Long> {
+public interface LoanRepository extends JpaRepository<Loan, Long> {
 
-	
-		@Query(value = "select l from Loan l where l.user.id = ?1")
-		List<Loan>   getLoanDetailsByUserId(Long id);
-	
-	
+	@Query("select l from Loan l where l.user.id = ?1")
+	List<Loan> getLoanDetailsByUserId(Long id);
+
+	List<Loan> findByStatus(LoanStatus status);
 }

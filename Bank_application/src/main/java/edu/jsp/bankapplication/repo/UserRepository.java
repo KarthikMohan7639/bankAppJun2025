@@ -8,9 +8,12 @@ import org.springframework.data.repository.query.Param;
 
 import edu.jsp.bankapplication.model.User;
 
-public interface UserRepository  extends JpaRepository<User,Long>{
-	
-		@Query(value =  "select u  from User u  where u.name like %:name%")
-		List<User>   getByname(@Param("name") String name);
+public interface UserRepository extends JpaRepository<User, Long> {
 
+	@Query("select u from User u where lower(u.name) like lower(concat('%', :name, '%'))")
+	List<User> getByname(@Param("name") String name);
+
+	boolean existsByEmail(String email);
+
+	boolean existsByEmailAndIdNot(String email, Long id);
 }
